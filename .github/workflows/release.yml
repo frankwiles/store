@@ -57,14 +57,20 @@ jobs:
         if: runner.os == 'Linux'
         run: |
           sudo apt-get update
-          sudo apt-get install -y pkg-config perl make
+          sudo apt-get install -y pkg-config perl make libssl-dev
 
       - name: Install musl tools
         if: matrix.platform.target == 'x86_64-unknown-linux-musl'
-        run: sudo apt-get install -y musl-tools
+        run: sudo apt-get install -y musl-tools musl-dev
 
       - name: Build
-        run: cargo build --release --target ${{ matrix.platform.target }}
+        run: |
+          if [ "${{ matrix.platform.target }}" = "x86_64-unknown-linux-musl" ]; then
+            cargo build --release --target ${{ matrix.platform.target }} --features vendored-openssl
+          else
+            cargo build --release --target ${{ matrix.platform.target }}
+          fi
+        shell: bash
 
       - name: Strip binary (Linux/macOS)
         if: runner.os != 'Windows'
