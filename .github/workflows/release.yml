@@ -16,7 +16,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: dtolnay/rust-toolchain@stable
       - name: Run tests
-        run: cargo test --verbose --no-tests pass
+        run: cargo nextest run --no-tests pass
 
   release:
     needs: test
