@@ -74,7 +74,6 @@ fn parse_data_input(inputs: &[String]) -> Result<serde_json::Value> {
 
     Ok(serde_json::Value::Object(
         map.into_iter()
-            .map(|(k, v)| (k, v))
             .collect(),
     ))
 }
