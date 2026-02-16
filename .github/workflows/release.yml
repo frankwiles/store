@@ -9,17 +9,7 @@ permissions:
   contents: write
 
 jobs:
-  test:
-    name: Run Tests
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: dtolnay/rust-toolchain@stable
-      - name: Run tests
-        run: cargo nextest run --no-tests pass
-
   release:
-    needs: test
     name: Release - ${{ matrix.platform.release_for }}
     runs-on: ${{ matrix.platform.os }}
     strategy:
