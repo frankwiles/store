@@ -3,6 +3,11 @@
 This small CLI tool makes is trivial for me to shove some data 
 into one of my personal API projects in my cluster. 
 
+**NOTE**: This is for my own personal use and while the repo is public 
+and MIT licensed I have **ZERO** intention of supporting this for a 
+wider audience of users.  It's a silly little JSON data shuttling tool,
+go build your own! 🤣
+
 ## Usage 
 
 First you should set the following environment variables: 
@@ -16,14 +21,14 @@ export STORE_API_URL=https://example.com/api/storage/create/
 These also also be passed on the command line but it's easier to 
 use environment variables. 
 
-You can send a JSON body as a string 
+You can send a JSON body as a string:
 
 ```shell
 $ store '{"something": "1234", "enabled": False}' 
 ```
 
 Or send `key=value` pairs which will get turned into a JSON 
-object by the API
+object by the API:
 
 ```shell
 $ store key1=value1 key2=value2  
